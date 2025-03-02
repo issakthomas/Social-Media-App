@@ -1,0 +1,69 @@
+.login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 98vh;
+    background-color: #111111;
+
+    .loginCard {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        background-color: #1e1e1e;
+
+        .fields {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            padding: 80px;
+
+            img {
+                width: 100px;
+            }
+
+            #title {
+                font-family: "Dynalight", serif;
+                font-size: 40px;
+                margin: 10px 0;
+            }
+
+            input {
+                width: 300px;
+                margin: 10px 0;
+                padding: 10px 15px;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                background-color: #111111;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            span {
+                font-size: 14px;
+                margin: 10px 0;
+
+                .link {
+                    cursor: pointer;
+                    color: coral;
+                }
+            }
+
+            button {
+                width: 100%;
+                margin: 10px 0;
+                padding: 10px;
+                cursor: pointer;
+                color: black;
+                border: none;
+                border-radius: 5px;
+                background-color: #ccc;
+            }
+        }
+    }
+}

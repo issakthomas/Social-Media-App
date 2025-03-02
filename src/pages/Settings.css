@@ -1,0 +1,44 @@
+.settings {
+    display: flex;
+    overflow-y: scroll;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 100px;
+    border-radius: 5px;
+    background-color: #1e1e1e;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    section {
+        width: 100%;
+        border-radius: 5px;
+        background-color: #111111;
+
+        div {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #444444;
+
+            &:hover {
+                background-color: rgba(128, 128, 128, 0.1);
+            }
+        }
+
+        .top {
+            border-radius: 5px 5px 0 0;
+        }
+
+        .bottom {
+            border-bottom: none;
+            border-radius: 0 0 5px 5px;
+        }
+
+        .red {
+            color: rgb(255, 50, 50);
+        }
+    }
+}
