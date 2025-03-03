@@ -3,10 +3,9 @@ import PropTypes from "prop-types";
 import img from "../assets/me.jpeg";
 
 const Profile = ({ admin }) => {
-  // noinspection JSValidateTypes
   return (
-    <div className="profile" data-aos="fade-up">
-      <section>
+    <div className="profile">
+      <section data-aos="fade-up">
         <div className="image">
           <img src={img} alt="" />
         </div>
@@ -38,7 +37,7 @@ const Profile = ({ admin }) => {
           {!admin && <button>Follow</button>}
         </div>
       </section>
-      <span>--- POSTS ---</span>
+      <span data-aos="fade-up">--- POSTS ---</span>
       <div className="posts" data-aos="fade-up">
         <img src={img} alt="" />
         <img src={img} alt="" />
