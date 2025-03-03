@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../assets/logo.svg";
 
 const Login = ({ insideRegister }) => {
   const navigate = useNavigate();
@@ -10,7 +9,6 @@ const Login = ({ insideRegister }) => {
     <div className="login">
       <div className="loginCard" data-aos="zoom-in">
         <div className="fields">
-          <img src={logo} alt="image" />
           <span id="title">lyte</span>
           {insideRegister && (
             <input type="text" placeholder="Enter your name" />

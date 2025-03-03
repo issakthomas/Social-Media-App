@@ -18,17 +18,17 @@
             align-items: center;
             flex-direction: column;
             justify-content: center;
-            padding: 80px;
-
-            img {
-                width: 100px;
-            }
+            padding: 60px 80px;
 
             #title {
                 font-family: "Dynalight", serif;
-                font-size: 40px;
-                margin: 10px 0;
+                font-size: 80px;
+                line-height: 1;
+                margin-top: 0;
+                margin-bottom: 30px;
+                color: white;
             }
+
 
             input {
                 width: 300px;
@@ -62,7 +62,7 @@
                 color: black;
                 border: none;
                 border-radius: 5px;
-                background-color: #ccc;
+                background-color: white;
             }
         }
     }
