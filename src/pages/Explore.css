@@ -35,19 +35,47 @@
         }
     }
 
-    .posts {
-        display: grid;
-        padding: 10px;
-        border-radius: 5px;
-        background-color: #111111;
-        grid-template-columns: repeat(3, 1fr);
+    .results {
+        display: flex;
+        flex-direction: column;
         gap: 10px;
 
-        img {
-            width: 100%;
-            height: 300px;
+        .result {
+            display: flex;
+            align-items: center;
+            padding: 30px;
             border-radius: 5px;
-            object-fit: cover;
+            background-color: #111111;
+            gap: 15px;
+
+            img {
+                width: 80px;
+                border-radius: 50px;
+            }
+
+            div {
+                display: flex;
+                flex-direction: column;
+
+                .name {
+                    font-size: 20px;
+                }
+
+                .username {
+                    font-size: 15px;
+                    font-weight: 300;
+                    font-style: italic;
+                    opacity: .75;
+                }
+            }
+
+            button {
+                margin-left: auto;
+                padding: 8px 16px;
+                border: none;
+                border-radius: 5px;
+            }
+
         }
     }
 }

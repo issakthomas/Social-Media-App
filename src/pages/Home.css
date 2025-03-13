@@ -23,9 +23,9 @@
         .card {
             width: 600px;
             height: min-content;
+            color: white;
             border-radius: 5px;
             background-color: #111111;
-
 
             .top {
                 display: flex;

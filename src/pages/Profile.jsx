@@ -1,8 +1,22 @@
 import "./Profile.css";
 import PropTypes from "prop-types";
+import { useEffect, useState } from "react";
 import img from "../assets/me.jpeg";
 
 const Profile = ({ admin }) => {
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const data = sessionStorage.getItem("user");
+    if (data) {
+      setUserData(JSON.parse(data));
+    }
+  }, []);
+
+  if (!userData) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div className="profile">
       <section data-aos="fade-up">
@@ -16,24 +30,19 @@ const Profile = ({ admin }) => {
               <div className="text">Posts</div>
             </div>
             <div>
-              <div className="count">300</div>
+              <div className="count">{userData.followers?.length || 0}</div>
               <div className="text">Followers</div>
             </div>
             <div>
-              <div className="count">200</div>
+              <div className="count">{userData.following?.length || 0}</div>
               <div className="text">Following</div>
             </div>
           </div>
           <div className="name">
-            <span>Issak Thomas</span>
-            <p>@issakthomas</p>
+            <span>{userData.name}</span>
+            <p>@{userData.username}</p>
           </div>
-          <div className="bio">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet
-            ullam distinctio quis omnis possimus? Laborum, ullam tempora.
-            Deserunt earum nesciunt assumenda, cum pariatur voluptatibus maxime
-            quae, odio quo doloremque incidunt!
-          </div>
+          {userData.bio && <div className="bio">{userData.bio}</div>}
           {!admin && <button>Follow</button>}
         </div>
       </section>
