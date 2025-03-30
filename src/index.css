@@ -21,3 +21,10 @@ body {
     border-radius: 5px;
     background-color: white;
 }
+
+.nothing {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    background-color: #111111;
+}

@@ -6,14 +6,12 @@
     justify-content: center;
     width: 100%;
     padding: 100px;
-    border-radius: 5px;
     background-color: #1e1e1e;
     -ms-overflow-style: none;
     scrollbar-width: none;
 
     section {
         width: 100%;
-        border-radius: 5px;
         background-color: #111111;
 
         div {
@@ -28,13 +26,8 @@
             }
         }
 
-        .top {
-            border-radius: 5px 5px 0 0;
-        }
-
         .bottom {
             border-bottom: none;
-            border-radius: 0 0 5px 5px;
         }
 
         .red {
@@ -48,7 +41,33 @@
     flex-direction: column;
     gap: 10px;
 
+    label {
+        img {
+            width: 100%;
+            height: auto;
+            padding: 10px;
+            border: 1px solid grey;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+    }
+
     input {
         padding: 10px;
+        border: 1px solid grey;
+        border-radius: 0;
+        background-color: transparent;
+
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+@media (max-width: 740px) {
+    .settings {
+        justify-content: normal;
+        height: 100%;
+        padding: 20px;
     }
 }

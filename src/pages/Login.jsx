@@ -58,10 +58,6 @@ const Login = ({ insideRegister }) => {
     }
   };
 
-  const keyDown = (e) => {
-    console.log("keyDown", e);
-  };
-
   useEffect(() => {
     if (popupMessage) {
       setTimeout(() => {

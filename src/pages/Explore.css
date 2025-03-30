@@ -3,7 +3,6 @@
     width: 100%;
     height: 100%;
     padding: 100px;
-    border-radius: 5px;
     background-color: #1e1e1e;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -14,7 +13,6 @@
         justify-content: space-between;
         margin-bottom: 10px;
         padding: 5px;
-        border-radius: 5px;
         background-color: #111111;
 
         input {
@@ -44,7 +42,6 @@
             display: flex;
             align-items: center;
             padding: 30px;
-            border-radius: 5px;
             background-color: #111111;
             gap: 15px;
 
@@ -73,9 +70,47 @@
                 margin-left: auto;
                 padding: 8px 16px;
                 border: none;
-                border-radius: 5px;
             }
 
+            .following {
+                color: white;
+                outline: 1px solid white;
+                background: transparent;
+            }
+
+        }
+
+        .noResult {
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+            opacity: 50%;
+            background-color: #111111;
+        }
+    }
+}
+
+@media (max-width: 740px) {
+    .explore {
+        padding: 20px;
+    }
+
+    .results {
+        .result {
+            align-items: center;
+            flex-direction: column;
+
+            div {
+                text-align: center;
+
+                span {
+                    display: block;
+                }
+            }
+
+            button {
+                margin-left: 0 !important;
+            }
         }
     }
 }

@@ -1,11 +1,15 @@
+span {
+    display: inline !important;
+}
+
 .home {
     display: flex;
     overflow-y: scroll;
     align-items: center;
     flex-direction: column;
     width: 100%;
-    padding: 20px 0;
-    border-radius: 5px;
+    height: 100%;
+    padding: 20px;
     background-color: #1e1e1e;
     gap: 20px;
     -ms-overflow-style: none;
@@ -20,11 +24,11 @@
         flex-direction: column;
         gap: 10px;
 
-        .card {
-            width: 600px;
+        .postCard {
+            max-width: 600px;
             height: min-content;
             color: white;
-            border-radius: 5px;
+            border-radius: 0;
             background-color: #111111;
 
             .top {
@@ -44,15 +48,16 @@
 
             .bottom {
                 display: flex;
-                flex-direction: column;
-                padding: 10px 10px 15px 20px;
+                align-items: center;
+                justify-content: space-between;
+                padding: 20px;
                 gap: 10px;
 
                 .interactions {
                     display: flex;
 
                     span {
-                        margin: 0 15px 0 5px;
+                        margin-right: 10px;
                     }
                 }
 

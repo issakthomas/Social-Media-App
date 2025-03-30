@@ -23,8 +23,6 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Login insideRegister={true} />} />
         </Routes>
-        {location.pathname !== "/login" &&
-          location.pathname !== "/register" && <Aside other={true} />}
       </div>
     </>
   );

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { deleteUser, updateUser } from "../services/allAPI.js";
+import { SERVERURL } from "../services/serverURL.js";
 
 const Settings = () => {
   const [modalDelete, setModalDelete] = useState(false);
@@ -14,19 +15,43 @@ const Settings = () => {
   const promptClose = () => setProShow(false);
   const promptShow = () => setProShow(true);
   const navigate = useNavigate();
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState({});
+  const [preview, setPreview] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
 
   useEffect(() => {
     const data = sessionStorage.getItem("user");
     if (data) {
-      setUserData(JSON.parse(data));
+      const parsedData = JSON.parse(data);
+      setUserData(parsedData);
+      setPreview(`${SERVERURL}/storage/${parsedData.profilePicture}`);
     }
   }, []);
 
   const handleUpdate = async () => {
     try {
-      const result = await updateUser(userData);
-      sessionStorage.setItem("user", JSON.stringify(result.data));
+      const { _id, name, username, password, bio, followers, following } =
+        userData;
+      const reqBody = new FormData();
+      reqBody.append("_id", _id);
+      reqBody.append("username", username);
+      reqBody.append("password", password);
+      if (selectedFile) {
+        reqBody.append("profilePicture", selectedFile);
+      }
+      reqBody.append("name", name);
+      reqBody.append("bio", bio);
+      reqBody.append("followers", JSON.stringify(followers));
+      reqBody.append("following", JSON.stringify(following));
+      const token = sessionStorage.getItem("token");
+      if (token) {
+        const reqHeaders = {
+          authorization: `Bearer ${token}`,
+        };
+        const result = await updateUser(reqBody, reqHeaders);
+        console.log(result.data);
+        sessionStorage.setItem("user", JSON.stringify(result.data));
+      }
     } catch (error) {
       console.log(error);
     }
@@ -49,6 +74,20 @@ const Settings = () => {
     navigate("/login");
   };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setSelectedFile(file);
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setPreview(`${SERVERURL}/storage/${userData.profilePicture}`);
+    }
+  };
+
   return (
     <div className="settings">
       <Modal
@@ -56,12 +95,23 @@ const Settings = () => {
         onHide={handleClose}
         centered
         data-bs-theme="dark"
-        style={{ backgroundColor: "black", color: "white" }}
+        style={{
+          backgroundColor: "black",
+          color: "white",
+        }}
       >
         <Modal.Header closeButton>
           <Modal.Title>Edit Profile</Modal.Title>
         </Modal.Header>
         <Modal.Body className="modalBody">
+          <label>
+            <img src={preview} alt="Profile Preview" />
+            <input
+              type="file"
+              style={{ display: "none" }}
+              onChange={handleFileChange}
+            />
+          </label>
           <input
             value={userData?.name}
             placeholder="Name"

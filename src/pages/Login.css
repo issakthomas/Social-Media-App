@@ -29,7 +29,6 @@
                 color: white;
             }
 
-
             input {
                 width: 300px;
                 margin: 10px 0;
@@ -63,6 +62,27 @@
                 border: none;
                 border-radius: 5px;
                 background-color: white;
+            }
+        }
+    }
+}
+
+@media (max-width: 740px) {
+    span {
+        display: block;
+    }
+
+    .login {
+        .loginCard {
+            width: 100%;
+            height: 100%;
+
+            .fields {
+                font-size: 14px;
+
+                input {
+                    width: 250px;
+                }
             }
         }
     }

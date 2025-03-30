@@ -1,16 +1,37 @@
 import "./Profile.css";
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import img from "../assets/me.jpeg";
+import { getPost } from "../services/allAPI.js";
+import { SERVERURL } from "../services/serverURL.js";
 
 const Profile = ({ admin }) => {
   const [userData, setUserData] = useState(null);
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
     const data = sessionStorage.getItem("user");
     if (data) {
       setUserData(JSON.parse(data));
     }
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const token = sessionStorage.getItem("token");
+        if (token) {
+          const reqHeaders = {
+            authorization: `Bearer ${token}`,
+          };
+          const response = await getPost(reqHeaders);
+          console.log(response.data);
+          setPosts(response.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
   }, []);
 
   if (!userData) {
@@ -21,12 +42,12 @@ const Profile = ({ admin }) => {
     <div className="profile">
       <section data-aos="fade-up">
         <div className="image">
-          <img src={img} alt="" />
+          <img src={`${SERVERURL}/storage/${userData.profilePicture}`} alt="" />
         </div>
         <div className="details">
           <div className="connections">
             <div>
-              <div className="count">12</div>
+              <div className="count">{posts?.length}</div>
               <div className="text">Posts</div>
             </div>
             <div>
@@ -46,18 +67,20 @@ const Profile = ({ admin }) => {
           {!admin && <button>Follow</button>}
         </div>
       </section>
-      <span data-aos="fade-up">--- POSTS ---</span>
-      <div className="posts" data-aos="fade-up">
-        <img src={img} alt="" />
-        <img src={img} alt="" />
-        <img src={img} alt="" />
-        <img src={img} alt="" />
-        <img src={img} alt="" />
-        <img src={img} alt="" />
-        <img src={img} alt="" />
-        <img src={img} alt="" />
-        <img src={img} alt="" />
-      </div>
+      <span>--- POSTS ---</span>
+      {posts?.length > 0 ? (
+        <div className="posts">
+          {posts.map((post) => (
+            <img
+              src={`${SERVERURL}/storage/${post.image}`}
+              alt=""
+              key={post._id}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="nothing">No Posts</div>
+      )}
     </div>
   );
 };
