@@ -9,6 +9,7 @@ import "./Aside.css";
 import { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import add from "../assets/add.svg";
 import { createPost } from "../services/allAPI.js";
 
 const Aside = () => {
@@ -92,7 +93,7 @@ const Aside = () => {
         </Modal.Header>
         <Modal.Body className="modalBody">
           <label>
-            <img src={preview} alt="Preview" />
+            <img src={preview ? preview : add} alt="Preview" />
             <input
               type="file"
               style={{ display: "none" }}
